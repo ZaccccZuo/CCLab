@@ -4,8 +4,8 @@ let BGmusic;
 let EPmusic;
 let EPplaying = false;
 function preload() {
-    BGmusic = loadSound('BG.mp3');
-    EPmusic = loadSound('Explor.mp3');
+    BGmusic = loadSound('~/BG.mp3');
+    EPmusic = loadSound('~/Explor.mp3');
 }
 function setup() {
     createCanvas(800, 500);
