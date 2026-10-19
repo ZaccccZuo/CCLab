@@ -32,7 +32,7 @@ async function setup() {
 
 function draw() {
     drawCreature(100, 2);
-    function splitCreature()；
+   splitCreature();
 }
 
 
