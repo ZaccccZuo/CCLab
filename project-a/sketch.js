@@ -86,8 +86,8 @@ function drawCreature(range, maxSize) {
             ballX[i] += random(-2, 2);
             ballY[i] += random(-2, 2);
         }
-
-        trail.fill(255, 0, 0);
+        let red = noise(millis() * 0.001) * 255;
+        trail.fill(red, 0, 0);
         trail.noStroke();
         trail.circle(ballX[i], ballY[i], random(1, maxSize));
     }
