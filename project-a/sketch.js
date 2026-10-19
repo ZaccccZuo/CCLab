@@ -94,7 +94,6 @@ function drawCreature(range, maxSize) {
 }
 
 function mousePressed() {
-    // browsers only allow sound after the first click
     userStartAudio();
     if (mouseButton.left) {
         ballX.push(mouseX);
