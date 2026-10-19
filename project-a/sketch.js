@@ -5,7 +5,7 @@ let bgMusic;
 let epMusic;
 let epVolume = 0;
 
-async function setup() {
+function setup() {
     let canvas = createCanvas(800, 500);
     canvas.elt.oncontextmenu = () => false;
     trail = createGraphics(800, 500);
@@ -22,11 +22,19 @@ async function setup() {
     ballX[4] = random(420, 780);
     ballY[4] = random(270, 480);
 
-    bgMusic = await loadSound('assets/BG.mp3');
-    epMusic = await loadSound('assets/Explor.mp3');
+    loadMusic();
+}
+
+async function loadMusic() {
+    let sounds = await Promise.all([
+        loadSound('assets/BG.mp3'),
+        loadSound('assets/Explor.mp3')
+    ]);
+    bgMusic = sounds[0];
     bgMusic.loop(true);
-    epMusic.loop(true);
     bgMusic.play();
+    epMusic = sounds[1];
+    epMusic.loop(true);
 }
 
 function draw() {
@@ -38,6 +46,9 @@ function draw() {
 }
 
 function updateSound() {
+    if (!epMusic) {
+        return;
+    }
     if (mouseIsPressed && mouseButton.right) {
         if (!epMusic.isPlaying()) {
             epMusic.play();
@@ -54,8 +65,8 @@ function updateSound() {
 }
 
 function drawNumbers() {
-    let alpha = noise(millis() * 0.0005) * 200;
-    fill(100, alpha);
+    let numAlpha = noise(millis() * 0.0005) * 200;
+    fill(100, numAlpha);
     noStroke();
     textSize(14);
     for (let x = 0; x < 100; x++) {
