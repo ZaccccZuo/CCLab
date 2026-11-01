@@ -1,6 +1,5 @@
 // original images
 let scannedImages = [];
-let naidanImages = [];
 
 // cropped parts of images
 let nailong;
@@ -10,35 +9,23 @@ let naidan;
 let currentNailongIndex = 0;
 let currentNaidanIndex = 0;
 
-let nailongX = 400;
-let nailongY = 250;
-let nailongDirection = 1;
-let nailongFrameCount = 0;
-
 async function setup() {
   createCanvas(800, 500);
   noSmooth();
 
   // load all images first
   const imagePromises = [];
-  for (let i = 1; i <= 3; i++) {
-    imagePromises.push(loadImage("assets/Sprite-000" + i + ".png"));
+  for (let i = 1; i <= 6; i++) {
+    imagePromises.push(loadImage("Nailong-Naidan/Sprite-000" + i + ".png"));
   }
   scannedImages = await Promise.all(imagePromises);
 
-  const naidanPromises = [];
-  for (let i = 10; i <= 12; i++) {
-    naidanPromises.push(loadImage("../Naidan/Sprite-00" + i + ".png"));
-  }
-  naidanImages = await Promise.all(naidanPromises);
-
 
   eraseBackground(scannedImages, 10);
-  eraseBackground(naidanImages, 10);
 
 
-  nailong = crop(scannedImages, 0, 0, 64, 64);
-  naidan = crop(naidanImages, 0, 0, 64, 64);
+  nailong = crop(scannedImages.slice(0, 3), 0, 0, 64, 64);
+  naidan = crop(scannedImages.slice(3, 6), 0, 0, 64, 64);
 }
 
 function draw() {
@@ -60,32 +47,15 @@ function draw() {
   );
   pop();
 
-  let distanceToMouse = dist(mouseX, mouseY, nailongX, nailongY);
-  nailongX = lerp(nailongX, mouseX, 0.03);
-  nailongY = lerp(nailongY, mouseY, 0.03);
-  // face the direction it is walking
-  if (mouseX > nailongX + 5) {
-    nailongDirection = 1;
-  } else if (mouseX < nailongX - 5) {
-    nailongDirection = -1;
-  }
-
-  let animationSpeed = map(distanceToMouse, 0, 400, 20, 4, true);
-  nailongFrameCount += 1 / animationSpeed;
-  currentNailongIndex = floor(nailongFrameCount % nailong.length);
+  currentNailongIndex = floor((frameCount / 20) % nailong.length);
   // display nailong
-  push();
-  translate(nailongX, nailongY);
-  scale(nailongDirection, 1);
-  imageMode(CENTER);
   image(
     nailong[currentNailongIndex],
-    0,
-    0,
+    mouseX,
+    mouseY,
     nailong[0].width * 2,
     nailong[0].height * 2
   );
-  pop();
 }
 
 
