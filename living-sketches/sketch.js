@@ -28,7 +28,7 @@ async function setup() {
 
   const naidanPromises = [];
   for (let i = 10; i <= 12; i++) {
-    naidanPromises.push(loadImage("assets/Sprite-00" + i + ".png"));
+    naidanPromises.push(loadImage("../Naidan/Sprite-00" + i + ".png"));
   }
   naidanImages = await Promise.all(naidanPromises);
 
