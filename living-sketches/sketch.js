@@ -1,11 +1,9 @@
-// original images
+
 let scannedImages = [];
 
-// cropped parts of images
 let nailong;
 let naidan;
 
-// current indices for animation
 let currentNailongIndex = 0;
 let currentNaidanIndex = 0;
 
@@ -13,7 +11,6 @@ async function setup() {
   createCanvas(800, 500);
   noSmooth();
 
-  // load all images first
   const imagePromises = [];
   for (let i = 1; i <= 6; i++) {
     imagePromises.push(loadImage("Nailong-Naidan/Sprite-000" + i + ".png"));
@@ -30,11 +27,7 @@ async function setup() {
 
 function draw() {
   background(255);
-
-  // EXAMPLES: NAIDAN
-  // update naidan index
   currentNaidanIndex = floor((frameCount / 10) % naidan.length);
-  // display naidan in the center
   push();
   translate(width / 2, height / 2);
   imageMode(CENTER);
