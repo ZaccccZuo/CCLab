@@ -72,14 +72,11 @@ class ChenghanDancer {
       });
     }
 
-    for (let i = this.drops.length - 1; i >= 0; i--) {
+    for (let i = 0; i < this.drops.length; i++) {
       let d = this.drops[i];
       d.x = d.x + d.vx;
       d.y = d.y + d.vy;
       d.alpha = d.alpha - 8;
-      if (d.alpha <= 0) {
-        this.drops.splice(i, 1);
-      }
     }
   }
   display() {
