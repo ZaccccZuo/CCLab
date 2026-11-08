@@ -58,7 +58,7 @@ class ChenghanDancer {
       this.tailSpeed = 2;
     }
 
-    this.white = noise(frameCount * 0.01);
+    this.white = noise(frameCount * 0.01) * 255;
 
     if (mouseX > this.x - 80 && mouseX < this.x + 50 &&
         mouseY > this.y - 25 && mouseY < this.y + 25) {
@@ -94,7 +94,7 @@ class ChenghanDancer {
     triangle(-15, -22, 15, -22, this.tailY, -42);
     triangle(-15, 22, 15, 22, -this.tailY, 42);
 
-    fill(lerpColor(color(0, 120, 255), color(255), this.white));
+    fill(this.white, this.white, 255);
     ellipse(0, 0, 100, 50);
 
     fill(255);
