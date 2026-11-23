@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.main-wrapper {
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 40px;
+}
+
+.title {
+  font-size: 48px;
+}
+
+.subtitle {
+  font-weight: normal;
+}
+
+.link {
+  color: inherit;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+canvas {
+  display: block;
+}
